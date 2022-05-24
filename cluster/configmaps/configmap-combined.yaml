@@ -1,0 +1,67 @@
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: v1
+data:
+  mapRoles: |
+    - groups:
+      - system:bootstrappers
+      - system:nodes
+      rolearn: arn:aws:iam::<account ID>:role/eksctl-dev-test-2-nodegroup-ng-1-NodeInstanceRole-xxx
+      username: system:node:{{EC2PrivateDNSName}}
+    - groups:
+      - system:bootstrappers
+      - system:nodes
+      rolearn: arn:aws:iam::<account ID>:role/eksctl-dev-test-3-nodegroup-ng-1-NodeInstanceRole-xxx
+      username: system:node:{{EC2PrivateDNSName}}
+    - groups:
+      - system:bootstrappers
+      - system:nodes
+      rolearn: arn:aws:iam::<account ID>:role/eksctl-dev-test-4-nodegroup-ng-2-NodeInstanceRole-xxx
+      username: system:node:{{EC2PrivateDNSName}}
+    - groups:
+      - system:bootstrappers
+      - system:nodes
+      rolearn: arn:aws:iam::<account ID>:role/eksctl-dev-test-4-nodegroup-ng-1-NodeInstanceRole-xxx
+      username: system:node:{{EC2PrivateDNSName}}
+  # users should be replaced with roles
+  mapUsers: |
+    - userarn: arn:aws:iam::<account ID>:user/name1
+      username: name1 
+      groups:
+        - system:masters
+    - userarn: arn:aws:iam::<account ID>:user/name2
+      username: name2 
+      groups:
+        - system:masters
+    - userarn: arn:aws:iam::<account ID>:user/name3
+      username: name3 
+      groups:
+        - system:masters
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2021-04-01T19:33:00Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:data:
+        .: {}
+        f:mapRoles: {}
+    manager: vpcLambda
+    operation: Update
+    time: "2021-04-01T19:33:00Z"
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:data:
+        f:mapUsers: {}
+    manager: kubectl
+    operation: Update
+    time: "2021-04-02T18:36:29Z"
+  name: aws-auth
+  namespace: kube-system
+  resourceVersion: "232356"
+  selfLink: /api/v1/namespaces/kube-system/configmaps/aws-auth
+  uid: 017...-...-...-...-...284

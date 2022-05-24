@@ -1,0 +1,33 @@
+--- 
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: dev-test-1
+  version: "1.19"
+  region: us-west-1
+
+vpc:
+  cidr: "10.12.0.0/16"
+
+managedNodeGroups:
+  - name: ng-1
+    instanceType: t2.medium 
+    minSize: 1
+    maxSize: 4
+    desiredCapacity: 2
+    volumeSize: 50
+    ssh:
+      allow: true
+      publicKey: "<ssh-rsa public key>"
+
+  - name: ng-2
+    instanceType: t2.medium
+    minSize: 1
+    maxSize: 4
+    desiredCapacity: 2
+    volumeSize: 50
+    privateNetworking: true
+    ssh:
+      allow: true
+      publicKey: "<ssh-rsa public key>"
