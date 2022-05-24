@@ -1,0 +1,22 @@
+# Experiment only. Generally don't SSH into containers.
+apiVersion: apps/v1
+kind: Deployment 
+metadata:
+  name: nginx-ssh
+  labels:
+    app: nginx-ssh
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx-ssh
+  template:
+    metadata:
+      labels:
+        app: nginx-ssh
+    spec:
+      containers:
+        - name: nginx-ssh
+          image: path/nginx-ssh:0.0.1
+          ports:
+            - containerPort: 80

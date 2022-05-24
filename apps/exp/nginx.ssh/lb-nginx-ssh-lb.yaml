@@ -1,0 +1,22 @@
+# experiment only. Generally don't SSH into containers.
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-ssh-lb
+  labels:
+    app: nginx-ssh
+spec:
+  type: LoadBalancer
+  selector:
+    app: nginx-ssh
+  ports:
+    - name: ingress-80 
+      protocol: TCP
+      port: 80
+      targetPort: 80
+    - name: ingress-443 
+      protocol: TCP
+      port: 443
+      targetPort: 443
+  loadBalancerSourceRanges:
+    - "10.0.0.0/8" # ingress example

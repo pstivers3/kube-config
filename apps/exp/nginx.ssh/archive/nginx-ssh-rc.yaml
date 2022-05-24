@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: nginx-ssh
+spec:
+  replicas: 1
+  selector:
+    app: nginx-ssh
+  template:
+    metadata:
+      name: nginx-ssh
+      labels:
+        app: nginx-ssh
+    spec:
+      containers:
+        - name: nginx-ssh
+          image: path/nginx-ssh:0.0.2
+          ports:
+            - containerPort: 80
